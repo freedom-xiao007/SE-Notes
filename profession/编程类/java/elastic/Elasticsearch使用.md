@@ -293,7 +293,7 @@ public class ElasticClientTest {
                 new HttpHost(host, port, scheme)
         };
         String userName = "elastic";
-        String password = "BitWorker.2020";
+        String password = "password";
         elasticClient = new ElasticClient(userName, password, hosts);
 
         if (elasticClient.checkIndexExist(index)) {
@@ -302,7 +302,7 @@ public class ElasticClientTest {
     }
 
     private void testAddIndex() throws IOException {
-        String indexSettingFilePath = "src/test/java/com/ninetech/cloud/support/elastic/TaskAndRobotLogIndex.json";
+        String indexSettingFilePath = "TaskAndRobotLogIndex.json";
         File file=new File(indexSettingFilePath);
         String indexSetting = FileUtils.readFileToString(file,"UTF-8");
         assert elasticClient.createIndex(index, indexSetting);
