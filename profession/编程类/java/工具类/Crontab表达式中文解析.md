@@ -9,8 +9,6 @@
 不多说，直接上代码：
 
 ```java
-package com.ninetech.cloud.bw.rpa.util;
-
 import org.springframework.scheduling.support.CronSequenceGenerator;
 
 import java.text.SimpleDateFormat;
