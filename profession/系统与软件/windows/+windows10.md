@@ -10,6 +10,7 @@
 - windows terminal：官方商店免费，感觉很好了
 - VSCode:很好用的编辑器了，写写文档不错，完美接替sublime
 - [嗨格式阅读器](https://link.zhihu.com/?target=https%3A//dl-next.aunbox.cn/channel%3Fchannel%3D8fe352b2)
+- [drawio-desktop：好用的开源画图工具](https://github.com/jgraph/drawio-desktop/releases/tag/v14.6.13)
 
 ### 备用软件
 - Wox：开源免费强大的快捷启动器辅助工具，快速高效率打开软件/搜索文件！（发现Windows7也能在简单的搜索启动程序，后面就没有装了）

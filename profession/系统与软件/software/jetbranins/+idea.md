@@ -19,7 +19,7 @@
 -   MyBatisCodeHelperPro：https://plugins.jetbrains.com/plugin/9837-mybatiscodehelperpro，mybatis代码自动生成插件，大部分单表操作的代码可自动生成 减少重复劳动 大幅提升效率
 -   Rainbow Brackets：https://plugins.jetbrains.com/plugin/10080-rainbow-brackets，彩虹颜色的括号 看着很舒服 敲代码效率变高
 -   Translation:https://plugins.jetbrains.com/plugin/8579-translation,最好用的翻译插件，功能很强大，界面很漂亮
--   RestfulToolkit:接口调用调试，极其好用
+-   RestfulTool and RestfulToolkit:接口调用调试，极其好用
 -   aiXcoer:代码预测补全， https://mp.weixin.qq.com/s/6O2oO0_JgQUZOcW9hUmw2Q
 -   SFTP:自己玩的时候，本地环境中服务器的代码同步
 -   GitToolBox: Git相关工具，相当的好用
