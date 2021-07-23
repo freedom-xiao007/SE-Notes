@@ -193,6 +193,13 @@ docker rmi -f $(docker images | grep "none" | awk '{print $3}')
 # linux
 ```
 
+### 清理已经停止的容器
+```shell
+docker container prune
+```
+
+- [删除Docker没用的镜像，容器，网络，卷，为你的主机“瘦身”](https://www.jianshu.com/p/6978cc343150)
+
 ### docker重新打tag并删除原tag的镜像
 ```
 docker tag repository:tag repository:newTag
