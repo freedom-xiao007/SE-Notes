@@ -118,6 +118,17 @@ git config --global credential.helper store
 git config credential.helper store
 ```
 
+#### 取消文件跟踪
+```sh
+git rm -r --cached . 　　//不删除本地文件
+
+git rm -r --f . 　　//删除本地文件
+
+git rm --cached readme1.txt    删除readme1.txt的跟踪，并保留在本地。
+
+git rm --f readme1.txt    删除readme1.txt的跟踪，并且删除本地文件。
+```
+
 #### 直接复制文件夹后的认证问题
 ##### Windows
 &ensp;&ensp;&ensp;&ensp;在直接复制git项目的目录时进行操作后显示认证失败，无法进行拉取之类的操作，需要运行下面的命令重置一下，重新输入自己的用户名和密码（提示，需要以管理员身份运行CMD）：

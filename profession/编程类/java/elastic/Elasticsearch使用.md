@@ -471,6 +471,9 @@ public class LogModel {
 - [maven detail](https://search.maven.org/artifact/org.elasticsearch.client/elasticsearch-rest-client/7.12.1/jar)
 - [kibana查询及可视化操作](https://www.jianshu.com/p/918d88fc6b09)
 - [ElasticSearch Java查询某字段既不为null也不为空的条目](https://blog.csdn.net/qq_30146831/article/details/106649800)
+- [ 组合查询](https://www.elastic.co/guide/cn/elasticsearch/guide/current/bool-query.html#bool-query)
+- [java使用elasticsearch进行模糊查询-已在项目中实际应用](https://www.cnblogs.com/chenyuanbo/p/9973105.html)
+- [查找多个精确值](https://www.elastic.co/guide/cn/elasticsearch/guide/current/_finding_multiple_exact_values.html)
 
 ### 问题
 - [解决elasticsearch client的maven中httpclient版本冲突的问题](https://blog.csdn.net/wupan6688/article/details/88667593)
