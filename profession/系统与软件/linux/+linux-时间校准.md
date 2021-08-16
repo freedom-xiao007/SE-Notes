@@ -1,6 +1,7 @@
 # Linux 时间校准
 ***
 ## 命令
+### 方式一
 ```
 tzselect
 export TZ='Asia/Shanghai'
@@ -11,6 +12,18 @@ timedatectl set-timezone 'Asia/Shanghai'
 
 yum -y install ntp
 /usr/sbin/ntpdate -u cn.pool.ntp.org
+```
+
+### 方式二
+```shell script
+date
+
+yum install -y ntpdate
+rm -rf /etc/localtime
+cp /usr/share/zoneinfo/Asia/Shanghai/ /etc/localtime
+ntpdate -u ntp.api.bz
+date
+hwclock -w
 ```
 
 ## 参考链接
