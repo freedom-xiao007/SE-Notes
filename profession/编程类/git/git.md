@@ -253,6 +253,15 @@ git pull upstream master
 git config --global core.longpaths true
 ```
 
+### 合并策略
+当代码编写完成，但已经落主线代码时，想要将自己的修改提交并作为最新的记录（常规合并是按照commit的时间），可以按照下面的方法操作：
+
+```shell script
+git rebase 主线 分支线
+```
+
+- [彻底掌握git(三)](https://segmentfault.com/a/1190000021471268)
+
 ## 参考链接
 - [http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&mid=2650661735&idx=1&sn=9aceac07d272e9202d1b5294f857a5ff&scene=23&srcid=0527tuPapv7riaNZFSHQGe4w#rd](http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&mid=2650661735&idx=1&sn=9aceac07d272e9202d1b5294f857a5ff&scene=23&srcid=0527tuPapv7riaNZFSHQGe4w#rd)
 - [http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&mid=2650661762&idx=1&sn=8282241cf7414030f4e1d315a173beb1&scene=23&srcid=0527o8THYaNT8wb7pcE8JS5G#rd](http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&mid=2650661762&idx=1&sn=8282241cf7414030f4e1d315a173beb1&scene=23&srcid=0527o8THYaNT8wb7pcE8JS5G#rd)
