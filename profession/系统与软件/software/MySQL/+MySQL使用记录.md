@@ -100,6 +100,12 @@ END $
 CALL goods_initData();
 ```
 
+### 开启/关闭 安全模式
+```sql
+# 因为MySql运行在safe-updates模式下，该模式会导致非主键条件下无法执行update或者delete命令，执行命令如下命令关闭安全模式.
+SET SQL_SAFE_UPDATES = 0;
+```
+
 ## 参考链接
 - [mysql-创建用户并授权，设置允许远程连接](https://www.cnblogs.com/gpdm/p/6492449.html)
 - [创建MySQL用户 赋予某指定库表的权限](https://www.cnblogs.com/wuyifu/p/7580494.html)
