@@ -66,7 +66,9 @@ git clone https://github.com.cnpmjs.org/apache/shardingsphere.git
 ### 示例代码运行
 使用IDEA打开后，先本地使用Maven工具，clean、install操作下，注意跳过测试
 
-这个如果不使用国内镜像的话，也是比较耗时的，趁着这段时间下楼跑个步，冲个澡后回来继续
+这个如果不使用国内镜像的话，也是比较耗时的
+
+博主看着过去两三分钟还没好，就趁着这段时间下楼跑个步，冲个澡后回来继续
 
 在根目录下有个example目录，右键选择作为Maven工程加载，然后再clean、install一下
 
