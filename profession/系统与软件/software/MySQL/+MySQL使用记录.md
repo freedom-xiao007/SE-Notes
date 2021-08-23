@@ -100,6 +100,11 @@ END $
 CALL goods_initData();
 ```
 
+### 统计相关
+```sql
+select timestampdiff(week,'2011-09-30','2015-05-04');
+```
+
 ### 开启/关闭 安全模式
 ```sql
 # 因为MySql运行在safe-updates模式下，该模式会导致非主键条件下无法执行update或者delete命令，执行命令如下命令关闭安全模式.
@@ -112,4 +117,4 @@ SET SQL_SAFE_UPDATES = 0;
 - [Centos 7 安装 MySQL](https://www.jianshu.com/p/7cccdaa2d177)
 - [centos7下mysql配置远程连接](https://blog.csdn.net/song634/article/details/80394965)
 - [MySQL ALTER命令](https://www.runoob.com/mysql/mysql-alter.html)
-- [MySQL修改字段允许为空](https://blog.csdn.net/justdb/article/details/8246782)
+- [mysql sum() 求和函数和TIMESTAMPDIFF时间差函数相结合的用法](https://blog.csdn.net/guo_qiangqiang/article/details/90480945)
