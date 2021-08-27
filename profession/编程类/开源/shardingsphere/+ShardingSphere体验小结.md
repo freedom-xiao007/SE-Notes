@@ -6,7 +6,8 @@
 ## 总结
 这几天对于ShardingSphere的相关了解如下：
 
-![](https://i.bmp.ovh/imgs/2021/08/46111e9231d2d1ff.png)
+
+![ShardingSphere源码阅读.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f9ed6777b5d54edf9a7e7321bf0ae462~tplv-k3u1fbpfcp-watermark.image)
 
 目前体验了三大部分：
 
