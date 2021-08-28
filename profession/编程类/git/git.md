@@ -272,3 +272,4 @@ git rebase 主线 分支线
 - [一招 git clone 加速](https://juejin.im/post/6844903862961176583)
 - [【最新】解决Github网页上图片显示失败的问题](https://zhuanlan.zhihu.com/p/148370694)
 - [Git Flow 的正确使用姿势](https://www.jianshu.com/p/41910dc6ef29)
+- [GitHub Desktop 拉取 GitHub上 Tag 版本代码](https://www.cnblogs.com/zongsir/p/10292013.html)
