@@ -12,5 +12,6 @@
 - [hardingSphere 体验小结](https://juejin.cn/post/7001218236846964744)
 
 ## ShardingSphere JDBC 系列
+- [ShardingSphere JDBC 语句执行初探](https://juejin.cn/post/7001268789371207688)
 
 ## ShardingSphere Proxy 系列
