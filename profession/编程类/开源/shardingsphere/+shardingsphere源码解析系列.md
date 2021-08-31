@@ -13,6 +13,6 @@
 
 ## ShardingSphere JDBC 系列
 - [ShardingSphere JDBC 语句执行初探](https://juejin.cn/post/7001268789371207688)
-- [SharingSphere 源码解析 -- 数据分片初探](https://juejin.cn/post/7002589552976068638)
+- [SharingSphere 源码解析 -- 真实SQL生成探索](https://juejin.cn/post/7002589552976068638)
 
 ## ShardingSphere Proxy 系列
