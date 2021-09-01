@@ -14,5 +14,6 @@
 ## ShardingSphere JDBC 系列
 - [ShardingSphere JDBC 语句执行初探](https://juejin.cn/post/7001268789371207688)
 - [SharingSphere 源码解析 -- 真实SQL生成探索](https://juejin.cn/post/7002589552976068638)
+- [ShardingSphere 语句解析生成初探](https://juejin.cn/post/7003073129643769869)
 
 ## ShardingSphere Proxy 系列
