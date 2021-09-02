@@ -111,6 +111,37 @@ select timestampdiff(week,'2011-09-30','2015-05-04');
 SET SQL_SAFE_UPDATES = 0;
 ```
 
+### 大于小于之类的写法
+```sql
+第一种写法（1）：
+
+原符号       <        <=      >       >=       &        '        "
+替换符号    &lt;    &lt;=   &gt;    &gt;=   &amp;   &apos;  &quot;
+例如：sql如下：
+create_date_time &gt;= #{startTime} and  create_date_time &lt;= #{endTime}
+
+第二种写法（2）：
+大于等于
+<![CDATA[ >= ]]>
+小于等于
+<![CDATA[ <= ]]>
+例如：sql如下：
+create_date_time <![CDATA[ >= ]]> #{startTime} and  create_date_time <![CDATA[ <= ]]> #{endTime}
+```
+
+### 修改字段默认值
+```sql
+alter table 表名 alter column 字段名 drop default; (若本身存在默认值，则先删除)
+
+alter table 表名 alter column 字段名 set default 默认值;(若本身不存在则可以直接设定)
+```
+
+### 查询空字段
+```sql
+# 使用 is null ，而不是==null
+select * from test where t_birth is null;
+```
+
 ## 参考链接
 - [mysql-创建用户并授权，设置允许远程连接](https://www.cnblogs.com/gpdm/p/6492449.html)
 - [创建MySQL用户 赋予某指定库表的权限](https://www.cnblogs.com/wuyifu/p/7580494.html)
@@ -118,3 +149,5 @@ SET SQL_SAFE_UPDATES = 0;
 - [centos7下mysql配置远程连接](https://blog.csdn.net/song634/article/details/80394965)
 - [MySQL ALTER命令](https://www.runoob.com/mysql/mysql-alter.html)
 - [mysql sum() 求和函数和TIMESTAMPDIFF时间差函数相结合的用法](https://blog.csdn.net/guo_qiangqiang/article/details/90480945)
+- [mybatis中大于等于小于等于的写法](https://blog.csdn.net/xuanzhangran/article/details/60329357)
+- [Mysql 修改字段默认值](https://www.cnblogs.com/hellojesson/p/6025548.html)
