@@ -1,12 +1,10 @@
-# apache/incubator-shenyu API网关简介
-***
 ## 简介
 本文主要是对API网关：apache/incubator-shenyu目前的功能和模块做一个简单的介绍
 
 ## 功能与模块说明
-整个ShenYu网关的模块与交互如下：
+整个[ShenYu](https://github.com/apache/incubator-shenyu)网关的模块与交互如下：
 
-![]()
+![ApacheShenYu简介.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/49743f5a2ca8434ab687cd8e4128eb06~tplv-k3u1fbpfcp-watermark.image)
 
 核心点是网关转发部分：Bootstrap网关。它主要负责将外部的请求，转发到对应的后台的服务，目前能支持HTTP和RPC两类的请求转发
 
