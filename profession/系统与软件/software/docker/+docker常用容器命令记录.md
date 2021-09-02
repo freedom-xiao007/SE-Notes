@@ -126,6 +126,53 @@ docker run -dit --name etcd_web -p 8081:8080 evildecay/etcdkeeper
 docker run -dit --name zk -p 2181:2181 zookeeper
 ```
 
+### Consul
+```shell script
+# linux
+docker run \
+    -d \
+    -p 8500:8500 \
+    -p 8600:8600/udp \
+    --name=consul_badger \
+    consul agent -server -ui -node=server-1 -bootstrap-expect=1 -client=0.0.0.0
+
+# windows
+docker run `
+    -d `
+    -p 8500:8500 `
+    -p 8600:8600/udp `
+    --name=consul_badger `
+    -v D:\Docker\compose\consul:/consul/config `
+    consul agent -server -ui `-node`=server-1 `-bootstrap-expect`=1 `-client`=0.0.0.0
+
+
+# ACL config in /consul/config
+{
+	"datacenter": "dc1",
+	"bootstrap_expect": 1,
+	"log_level": "INFO",
+	"node_name": "consul_server_1",
+	"client_addr": "0.0.0.0",
+	"server": true,
+	"ui": true,
+	"enable_script_checks": true,
+	"addresses": {
+	    "https": "0.0.0.0",
+	    "dns": "0.0.0.0"
+	}
+}
+
+primary_datacenter = "dc1"
+acl {
+  enabled = true
+  default_policy = "deny"
+  enable_token_persistence = true
+  tokens { 
+    master = "474dcea7-ee4d-3f11-1af1-a38eb37d3f5d"
+  }
+}
+```
+
 ## 消息队列
 ### docker-activemq
 ```shell script
