@@ -16,5 +16,6 @@
 - [SharingSphere 源码解析 -- 真实SQL生成探索](https://juejin.cn/post/7002589552976068638)
 - [ShardingSphere 语句解析生成初探](https://juejin.cn/post/7003073129643769869)
 - [ShardingSphere SQLToken 生成探索](https://juejin.cn/post/7003899320357355550)
+- [ShardingSphere LogicSQL 的生成探索](https://juejin.cn/post/7004266999484252197)
 
 ## ShardingSphere Proxy 系列
