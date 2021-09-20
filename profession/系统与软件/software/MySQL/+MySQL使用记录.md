@@ -142,6 +142,11 @@ alter table 表名 alter column 字段名 set default 默认值;(若本身不存
 select * from test where t_birth is null;
 ```
 
+### 日志查看
+```shell script
+sudo tail -f /var/log/mysql/mysql.log
+```
+
 ## 参考链接
 - [mysql-创建用户并授权，设置允许远程连接](https://www.cnblogs.com/gpdm/p/6492449.html)
 - [创建MySQL用户 赋予某指定库表的权限](https://www.cnblogs.com/wuyifu/p/7580494.html)
@@ -151,3 +156,4 @@ select * from test where t_birth is null;
 - [mysql sum() 求和函数和TIMESTAMPDIFF时间差函数相结合的用法](https://blog.csdn.net/guo_qiangqiang/article/details/90480945)
 - [mybatis中大于等于小于等于的写法](https://blog.csdn.net/xuanzhangran/article/details/60329357)
 - [Mysql 修改字段默认值](https://www.cnblogs.com/hellojesson/p/6025548.html)
+- [MySQL数据库日志的查看](https://blog.csdn.net/gymaisyl/article/details/83932495)
