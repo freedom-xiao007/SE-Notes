@@ -10,3 +10,4 @@ rabbitmq-plugins enable rabbitmq_tracing
 
 ## 参考链接
 - [rabbitmq启用日志功能记录消息队列收发情况](https://blog.csdn.net/fuck487/article/details/78677108)
+- [RabbitMQ (Message) Tracing Plugin](https://github.com/rabbitmq/rabbitmq-tracing)
