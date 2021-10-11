@@ -27,7 +27,10 @@ systemctl enable docker
 yum install -y yum-utils  device-mapper-persistent-data  lvm2
 yum-config-manager  --add-repo   https://download.docker.com/linux/centos/docker-ce.repo
 # https://download.docker.com/linux/centos/7/x86_64/stable/Packages/,containerd.io-1.2.6-3.3.el7.x86_64.rpm  
+wget https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
 yum localinstall -y containerd.io-1.2.6-3.3.el7.x86_64.rpm
+# problem with installed package podman-2.0.5-5.module_el8.3.0+512+b3b58dca.x86_64
+# yum erase podman buildah
 yum install docker-ce docker-ce-cli
 
 systemctl start docker
