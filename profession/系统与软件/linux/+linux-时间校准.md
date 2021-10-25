@@ -28,3 +28,4 @@ hwclock -w
 
 ## 参考链接
 - [Linux服务器时间不一致问题的解决](https://blog.csdn.net/zisefeizhu/article/details/81535299)
+- [linux 修改服务器时间](https://blog.csdn.net/wangbailin2009/article/details/53332453)
