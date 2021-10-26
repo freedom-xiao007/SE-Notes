@@ -79,7 +79,7 @@ db.threadIndexTest.find().forEach(function(d){ db.getSiblingDB('my_visual')['thr
 
 ### 数据库复制
 ```sh
-db.copyDatabase("cx_tag","cx_tag","127.0.0.1:27017");
+db.copyDatabase("phone_record","self_growth","10.9.72.82:27017");
 ```
 
 ### sort()方法的size限制
@@ -104,6 +104,12 @@ mongoimport -h 172.19.104.18 --port 20017 -d testdb -c testcol -u mytest -p 1234
   
 # 导出数据库
 mongodump -h 172.19.104.18 --port 20017 -u mytest -p 12345 -d testdb -o /tmp --authenticationDatabase testdb
+docker exec -ti mongo mongodump -h 127.0.0.1 --port 27017 -d phone_record -o /home/mongodb/
+docker cp mongo:/home/mongodb/ /root/mongo/
+docker cp /root/mongo/ mongodb:/home/mongodb/
+docker exec -ti mongodb mongorestore -h 127.0.0.1 --port 27017 -u "mongoadmin" -p "secret" --authenticationDatabase admin -d phone_record /home/mongodb/
+docker exec -ti mongodb mongorestore --username "mongoadmin" --password "secret" --authenticationDatabase phone_record --db phone_record /home/mongodb/
+
 # 导出表
 mongoexport -h 172.19.104.18 --port 20017 -u mytest -p 12345 -d testdb -c testcol -o /tmp/test.json --authenticationDatabase testdb
 ```
@@ -121,3 +127,5 @@ mongoexport -h 172.19.104.18 --port 20017 -u mytest -p 12345 -d testdb -c testco
 - [Download Studio 3T for MongoDB](https://studio3t.com/download/)
 - [ Robo 3T](https://robomongo.org/download)
 - [MongoDB日常运维操作命令小结](https://www.cnblogs.com/kevingrace/p/8184087.html)
+- [mongodb 备份、还原、导入、导出简单操作](https://segmentfault.com/a/1190000006236494)
+- [使用 Docker 安装 MongoDB](https://blog.sunriseydy.top/technology/linux/docker-install-mongodb/)
