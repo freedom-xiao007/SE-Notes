@@ -24,6 +24,26 @@ docker run -d --name redis -p 6379:6379 redis --requirepass "password"
 ./redis-cli -h 127.0.0.1 -p 6379 -a myPassword
 
 docker run -dit --name mongo -p 27017:27017 mongo
+# windows
+docker run  -d `
+  -e MONGO_INITDB_ROOT_USERNAME=mongoadmin`
+  -e MONGO_INITDB_ROOT_PASSWORD=secret `
+  -v /ect/localtime:/etc/localtime`
+  -p 3389:27017 `
+  --name mongodb`
+  --restart always mongo:latest
+
+docker run  -d -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=secret -v /etc/localtime:/etc/localtime:ro -p 3389:27017  --name mongodb --restart always mongo:latest
+# linux
+docker run  -d \
+  -e MONGO_INITDB_ROOT_USERNAME=mongoadmin \
+  -e MONGO_INITDB_ROOT_PASSWORD=secret \
+  -v /root/docker/mongodb/data:/data/  \
+  -p 27017:27017 \
+  --network mongo-network \
+  --name mongo \
+  --restart always \
+  mongo:latest
 ```
 
 ### ES
