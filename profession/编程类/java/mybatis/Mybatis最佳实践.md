@@ -251,3 +251,5 @@ spring.datasource.data =  classpath:sql/data.sql
 - [Dynamic SQL](https://mybatis.org/mybatis-3/dynamic-sql.html)
 - [28.MyBatis应用分析与最佳实践](https://zhuanlan.zhihu.com/p/139444913)
 - [Mybatis中Like 的使用方式以及一些注意点](https://juejin.cn/post/6844903970666725389)
+- [MybatisPlus中插入数据获取主键值](https://blog.csdn.net/BADAO_LIUMANG_QIZHI/article/details/89431498)
+- [MyBatisPlus主键总为0解决方法](https://blog.csdn.net/qq_43299088/article/details/108282618)
