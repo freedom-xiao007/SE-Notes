@@ -29,3 +29,6 @@ hwclock -w
 ## 参考链接
 - [Linux服务器时间不一致问题的解决](https://blog.csdn.net/zisefeizhu/article/details/81535299)
 - [linux 修改服务器时间](https://blog.csdn.net/wangbailin2009/article/details/53332453)
+- [如何在CentOS 7上设置或更改时区](https://www.myfreax.com/how-to-set-or-change-timezone-on-centos-7/)
+- [Docker时间不一致，时区设置](https://blog.51cto.com/u_1472521/3714709)
+- [docker时区的修改与同步](https://zhuanlan.zhihu.com/p/345402656)
