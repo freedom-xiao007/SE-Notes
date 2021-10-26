@@ -90,3 +90,4 @@ public class SwaggerConfiguration {
 ## 参考链接
 - [swagger默认访问地址](https://blog.csdn.net/AlbertFly/article/details/80859684)
 - [spring boot controller 增加指定前缀的两种方法](https://blog.csdn.net/java_zhangshuai/article/details/107580703)
+- [ knife4j](https://doc.xiaominfo.com/knife4j/documentation/get_start.html)
