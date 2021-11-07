@@ -308,7 +308,7 @@ docker run -p 1337:1337 `
 ### Portainer - Docker的可视化管理工具使用详解
 ```
 # linux
-docker run -d -p 9000:9000 --name portainer --restart always -v D:/temp/docker/portainer/docker.sock:/var/run/docker.sock -v D:/temp/docker/portainer/data:/data portainer/portainer
+docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v /home/docker/portainer/data:/data portainer/portainer
 
 # windows
 docker run -d -p 9000:9000 --name portainer --restart always -v -v D:/temp/docker/portainer/docker_engine:/var/run/pipe/docker_engine -v D:/temp/docker/portainer/data:/data portainer/portainer
