@@ -14,12 +14,19 @@
 文中实现一个数据库连接池的核心如下：
 
 > 连接池设计的基本原理是这样的：
+
 >（1）建立连接池对象（服务启动）。
+
 >（2）按照事先指定的参数创建初始数量的连接（即：空闲连接数）。
+
 >（3）对于一个访问请求，直接从连接池中得到一个连接。如果连接池对象中没有空闲的连接，且连接数没有达到最大（即：最大活跃连接数），创建一个新的连接；如果达到最大，则设定一定的超时时间，来获取连接。
+
 >（4）运用连接访问服务。
+
 >（5）访问服务完成，释放连接（此时的释放连接，并非真正关闭，而是将其放入空闲队列中。如实际空闲连接数大于初始空闲连接数则释放连接）。
+
 >（6）释放连接池对象（服务停止、维护期间，释放连接池对象，并释放所有连接）。
+
 > 摘抄自：[一文读懂连接池技术原理、设计与实现（Python）](https://toutiao.io/posts/nickqt/preview)
 
 上面的配合上文中Python代码实现，感觉还是能体会到实现一个连接池的关键点的
@@ -100,7 +107,7 @@ public class Demo0 extends TestCase {
             FilterChainImpl filterChain = new FilterChainImpl(this);
             return filterChain.dataSource_connect(this, maxWaitMillis);
         } else {
-	    # 走到这里获取连接
+	        // 走到这里获取连接
             return getConnectionDirect(maxWaitMillis);
         }
     }
@@ -126,7 +133,7 @@ public void init() throws SQLException {
                 }
             } else if (!asyncInit) {
                 // init connections
-		// 这里就是根据配置初始化了初始数据量的连接
+		        // 这里就是根据配置初始化了初始数据量的连接
                 while (poolingCount < initialSize) {
                     try {
                         PhysicalConnectionInfo pyConnectInfo = createPhysicalConnection();
@@ -151,7 +158,7 @@ public void init() throws SQLException {
     }
 ```
 
-继续跟到获取连接
+继续跟到获取连接相关的代码：
 
 ```java
 public DruidPooledConnection getConnectionDirect(long maxWaitMillis) throws SQLException {
@@ -160,7 +167,7 @@ public DruidPooledConnection getConnectionDirect(long maxWaitMillis) throws SQLE
             // handle notFullTimeoutRetry
             DruidPooledConnection poolableConnection;
             try {
-		# 获取连接
+		        // 获取连接
                 poolableConnection = getConnectionInternal(maxWaitMillis);
             } catch (GetConnectionTimeoutException ex) {
             }
@@ -174,11 +181,11 @@ private DruidPooledConnection getConnectionInternal(long maxWait) throws SQLExce
                 if (maxWait > 0) {
                     holder = pollLast(nanos);
                 } else {
-		    // 取最后一个
+		            // 取最后一个
                     holder = takeLast();
                 }
 
-		// 相关统计的计算
+		        // 相关统计的计算
                 if (holder != null) {
                     if (holder.discard) {
                         continue;
@@ -210,14 +217,20 @@ private DruidPooledConnection getConnectionInternal(long maxWait) throws SQLExce
 
 DruidConnectionHolder takeLast() throws InterruptedException, SQLException {
         decrementPoolingCount();
+        // 从init初始化中变量中获取最后一个连接
         DruidConnectionHolder last = connections[poolingCount];
         connections[poolingCount] = null;
-
         return last;
     }
 ```
 
+通过上面的代码，我们大致知道了获取链接的关键代码：
+
+- 初始化连接：根据设置的初始连接数，初始化相应数量的链接，看到目前使用的是一个简单的数组结构来保存的
+- 获取链接：目前看到的是取最后一个
+
 ### 关闭连接
+下面我们跟踪关闭连接的入口看下：conn.close();
 
 ```java
 # DruidPooledConnection.java
@@ -227,6 +240,7 @@ DruidConnectionHolder takeLast() throws InterruptedException, SQLException {
             List<Filter> filters = dataSource.getProxyFilters();
             if (filters.size() > 0) {
             } else {
+                // 回收的入口
                 recycle();
             }
         } finally {
@@ -236,10 +250,13 @@ DruidConnectionHolder takeLast() throws InterruptedException, SQLException {
     public void recycle() throws SQLException {
         if (!this.abandoned) {
             DruidAbstractDataSource dataSource = holder.getDataSource();
+            // 进入回收逻辑
             dataSource.recycle(this);
         }
     }
 ```
+
+上面是回收的入口逻辑，下面是具体的回收核心处理逻辑，可以看到设置了一些标识位，和把连接放回等操作，没有具体的关闭物理连接的逻辑
 
 ```java
 # DruidDataSource.java
@@ -263,3 +280,16 @@ DruidConnectionHolder takeLast() throws InterruptedException, SQLException {
             }
     }
 ```
+
+## 总结
+本篇文中，查阅了连接池实现的一些文章，然后对应在Alibaba Druid中定位到了符合我们猜想的核心代码：
+
+- 初始化连接：根据设置的初始连接数，初始化相应数量的链接，看到目前使用的是一个简单的数组结构来保存的
+- 获取链接：目前看到的是取最后一个
+- 回收连接：不关闭物理连接，重置一些标识位
+
+当然还有其他的细节，留待后面再探索
+
+## 参考链接
+- [一文读懂连接池技术原理、设计与实现（Python）](https://toutiao.io/posts/nickqt/preview)
+- [如何设计并实现一个db连接池？](https://juejin.cn/post/6844903853872119822)
