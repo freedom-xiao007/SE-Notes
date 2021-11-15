@@ -6,3 +6,7 @@
 - [Alibaba Druid 源码阅读（三） 数据库连接池初始化探索](https://juejin.cn/post/7028919903834865671/)
 - [Alibaba Druid 源码阅读（四） 数据库连接池中连接获取探索](https://juejin.cn/post/7029288150258171935)
 - [Alibaba Druid 源码阅读（五）数据库连接池 连接关闭探索](https://juejin.cn/post/7029666671870623781)
+
+## Demo
+- [github code](https://github.com/lw1243925457/DataSourcePoolDemo)
+- [数据库连接池Demo（1）单线程初步](https://juejin.cn/post/7030807425905066014/)
