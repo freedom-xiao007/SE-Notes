@@ -225,6 +225,38 @@ public class SelfPoolConnection implements javax.sql.PooledConnection, Connectio
 }
 ```
 
+#### 测试运行
+测试函数如下：
+
+```java
+public class Main {
+
+    /**
+     * 自定义数据库连接池查询
+     */
+    private static void selfExample() {
+        final SelfDataSource dataSource = new SelfDataSource(DB_URL, USER, PASS);
+        for (int i=0; i<queryAmount; i++) {
+            // Open a connection
+            try(Connection conn = dataSource.getConnection();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(QUERY)) {
+                // Extract data from result set
+                while (rs.next()) {
+                    // Retrieve by column name
+                    System.out.print("ID: " + rs.getInt("id"));
+                    System.out.print(", name: " + rs.getString("name"));
+                    System.out.print(";");
+                }
+                System.out.println();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
 ### 运行对比
 运行函数与结果如下：
 
