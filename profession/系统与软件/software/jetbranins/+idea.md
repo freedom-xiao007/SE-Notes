@@ -23,6 +23,7 @@
 -   aiXcoer:代码预测补全， https://mp.weixin.qq.com/s/6O2oO0_JgQUZOcW9hUmw2Q
 -   SFTP:自己玩的时候，本地环境中服务器的代码同步
 -   GitToolBox: Git相关工具，相当的好用
+-   SequenceDiagram :源码阅读时，时序图生成工具
 
 ### 插件下载官网
 
@@ -74,3 +75,6 @@ public class People {
 按照提示修改该类的配置，选择jar manifest(每个报错的类都需要注意设置，项目的.idea/workspace.xml有这个选项，可以修改默认值，这样就不用每次更改) 
 
 - [https://blog.csdn.net/qq_38709953/article/details/88178499]
+
+## 参考链接
+- [SequenceDiagram](https://juejin.cn/post/7028455132434006052)
