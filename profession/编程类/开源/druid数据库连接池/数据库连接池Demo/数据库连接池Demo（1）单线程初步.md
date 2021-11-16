@@ -366,7 +366,7 @@ ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6
 
 目前的例子是单线程，没有考虑加锁、检查、异常处理等，可能是这些有影响，后面我们再研究研究
 
-代码参考地址：https://github.com/lw1243925457/DataSourcePoolDemo
+代码参考地址，可查看Tag V0.0.1：https://github.com/lw1243925457/DataSourcePoolDemo
 
 ## 参考链接
 - [Alibaba Druid 源码阅读（一） 数据库连接池初步](https://juejin.cn/post/7028200379338735623/)
