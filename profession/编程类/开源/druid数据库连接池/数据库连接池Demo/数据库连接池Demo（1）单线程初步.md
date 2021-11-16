@@ -75,6 +75,31 @@ public class Main {
 }
 ```
 
+单连接查询：
+
+```java
+/**
+     * 原生JDBC查询 单连接查询
+     */
+    private static void rawSingleExample() {
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
+            for (int i=0; i<queryAmount; i++) {
+                try (Statement stmt = conn.createStatement();
+                     ResultSet rs = stmt.executeQuery(QUERY);) {
+                    while (rs.next()) {
+                        System.out.print("ID: " + rs.getInt("id"));
+                        System.out.print(", name: " + rs.getString("name"));
+                        System.out.print(";");
+                    }
+                    System.out.println();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+```
+
 ### Alibaba Druid查询
 使用Alibaba Druid进行相同的查询操作：
 
@@ -181,7 +206,7 @@ public class SelfDataSource implements DataSource {
 ```
 
 #### 自定义Connection
-因为在测试代码中，涉及的需要实现的函数如下：
+因为在测试代码中，涉及的需要实现的函数如下,其他的默认实现即可
 
 - createStatement
 - close（try自动调用）
@@ -263,22 +288,32 @@ public class Main {
 ```java
 public class Main {
 
+    /**
+     * 单线程测试代码
+     * 注意：不要一起运行测试，感觉有缓存，导致在后面运行的查询速度很快
+     *      需要运行那个单独放开，其他注释掉
+     * @param args args
+     * @throws Exception e
+     */
     public static void main(String[] args) throws Exception {
-        initData();
+//        initData();
 
+        final StringBuilder result = new StringBuilder();
         long current = System.currentTimeMillis();
-        rawExample();
-        System.out.printf("原生查询耗时：%d 毫秒\n", System.currentTimeMillis() - current);
 
-        current = System.currentTimeMillis();
-        druidExample();
-        System.out.printf("连接池查询耗时：%d 毫秒\n", System.currentTimeMillis() - current);
+//        rawExample();
+//        result.append(String.format("原生查询耗时：%d 毫秒\n", System.currentTimeMillis() - current));
 
-        current = System.currentTimeMillis();
+//        rawSingleExample();
+//        result.append(String.format("原生Jdbc单连接查询耗时：%d 毫秒\n", System.currentTimeMillis() - current));
+
+//        druidExample();
+//        result.append(String.format("Druid连接池查询耗时：%d 毫秒\n", System.currentTimeMillis() - current));
+
         selfExample();
-        System.out.printf("自写连接池查询耗时：%d 毫秒\n", System.currentTimeMillis() - current);
+        result.append(String.format("自写连接池查询耗时：%d 毫秒\n", System.currentTimeMillis() - current));
 
-        Thread.sleep(3000);
+        System.out.println(result);
     }
 }
 ```
@@ -291,17 +326,22 @@ ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6
 ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6, name: 5;ID: 7, name: 6;ID: 8, name: 7;ID: 9, name: 8;ID: 10, name: 9;
 ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6, name: 5;ID: 7, name: 6;ID: 8, name: 7;ID: 9, name: 8;ID: 10, name: 9;
 ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6, name: 5;ID: 7, name: 6;ID: 8, name: 7;ID: 9, name: 8;ID: 10, name: 9;
-原生查询耗时：220 毫秒
-11月 15, 2021 10:09:04 下午 com.alibaba.druid.pool.DruidDataSource error
-严重: testWhileIdle is true, validationQuery not set
-11月 15, 2021 10:09:04 下午 com.alibaba.druid.pool.DruidDataSource info
-信息: {dataSource-1} inited
+原生查询耗时：1715 毫秒
+
 ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6, name: 5;ID: 7, name: 6;ID: 8, name: 7;ID: 9, name: 8;ID: 10, name: 9;
 ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6, name: 5;ID: 7, name: 6;ID: 8, name: 7;ID: 9, name: 8;ID: 10, name: 9;
 ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6, name: 5;ID: 7, name: 6;ID: 8, name: 7;ID: 9, name: 8;ID: 10, name: 9;
 ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6, name: 5;ID: 7, name: 6;ID: 8, name: 7;ID: 9, name: 8;ID: 10, name: 9;
 ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6, name: 5;ID: 7, name: 6;ID: 8, name: 7;ID: 9, name: 8;ID: 10, name: 9;
-连接池查询耗时：69 毫秒
+原生Jdbc单连接查询耗时：770 毫秒
+
+ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6, name: 5;ID: 7, name: 6;ID: 8, name: 7;ID: 9, name: 8;ID: 10, name: 9;
+ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6, name: 5;ID: 7, name: 6;ID: 8, name: 7;ID: 9, name: 8;ID: 10, name: 9;
+ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6, name: 5;ID: 7, name: 6;ID: 8, name: 7;ID: 9, name: 8;ID: 10, name: 9;
+ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6, name: 5;ID: 7, name: 6;ID: 8, name: 7;ID: 9, name: 8;ID: 10, name: 9;
+ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6, name: 5;ID: 7, name: 6;ID: 8, name: 7;ID: 9, name: 8;ID: 10, name: 9;
+Druid连接池查询耗时：588 毫秒
+
 生成新物理连接
 初始化物理连接
 ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6, name: 5;ID: 7, name: 6;ID: 8, name: 7;ID: 9, name: 8;ID: 10, name: 9;
@@ -314,8 +354,7 @@ ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6
 回收连接
 ID: 1, name: 0;ID: 2, name: 1;ID: 3, name: 2;ID: 4, name: 3;ID: 5, name: 4;ID: 6, name: 5;ID: 7, name: 6;ID: 8, name: 7;ID: 9, name: 8;ID: 10, name: 9;
 回收连接
-自写连接池查询耗时：6 毫秒
-Disconnected from the target VM, address: '127.0.0.1:54211', transport: 'socket'
+自写连接池查询耗时：473 毫秒
 ```
 
 ## 总结
@@ -323,7 +362,7 @@ Disconnected from the target VM, address: '127.0.0.1:54211', transport: 'socket'
 
 但自定义的连接池竟然比Druid还快，是我没有想到的，一度有些怀疑
 
-但相关的地址确实是实现了的，从日志上来看，确实是只初始化了一次，后面没有再初始物理连接
+但相关的确实是实现了的，从日志上来看，确实是只初始化了一次，后面没有再初始物理连接
 
 目前的例子是单线程，没有考虑加锁、检查、异常处理等，可能是这些有影响，后面我们再研究研究
 
