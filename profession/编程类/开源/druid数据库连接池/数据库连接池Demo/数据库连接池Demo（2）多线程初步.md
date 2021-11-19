@@ -303,7 +303,7 @@ public class MultiThreadSelfTest {
 
 后面继续完善吧，还有就是和Alibaba Druid的运行对比，这些后面继续写和研究
 
-代码参考地址，可查看Tag V0.0.1：https://github.com/lw1243925457/DataSourcePoolDemo
+代码参考地址，可查看Tag V0.0.2：https://github.com/lw1243925457/DataSourcePoolDemo
 
 ## 参考链接
 - [Alibaba Druid 源码阅读（一） 数据库连接池初步](https://juejin.cn/post/7028200379338735623/)
