@@ -13,3 +13,8 @@ rabbitmq-plugins enable rabbitmq_tracing
 - [RabbitMQ (Message) Tracing Plugin](https://github.com/rabbitmq/rabbitmq-tracing)
 - [How to add plugin to RabbitMQ docker image?](https://stackoverflow.com/questions/52819237/how-to-add-plugin-to-rabbitmq-docker-image)
 - [RabbitMQ (Message) Tracing Plugin](https://github.com/rabbitmq/rabbitmq-tracing)
+- [RabbitMQ用户管理](https://www.jianshu.com/p/31074450e772)
+- [RabbitMQ web 管理界面的登录密码忘记了怎么办](https://jingyan.baidu.com/article/ff42efa967e0b2809f220217.html)
+- [[Check RabbitMQ queue size from client](https://stackoverflow.com/questions/1038318/check-rabbitmq-queue-size-from-client)]
+- 
+
