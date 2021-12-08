@@ -262,6 +262,14 @@ git rebase 主线 分支线
 
 - [彻底掌握git(三)](https://segmentfault.com/a/1190000021471268)
 
+### 抽取某次提交到其他分支
+
+```shell
+git cherry-pick 7fcb3defff
+```
+
+
+
 ## 参考链接
 - [http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&mid=2650661735&idx=1&sn=9aceac07d272e9202d1b5294f857a5ff&scene=23&srcid=0527tuPapv7riaNZFSHQGe4w#rd](http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&mid=2650661735&idx=1&sn=9aceac07d272e9202d1b5294f857a5ff&scene=23&srcid=0527tuPapv7riaNZFSHQGe4w#rd)
 - [http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&mid=2650661762&idx=1&sn=8282241cf7414030f4e1d315a173beb1&scene=23&srcid=0527o8THYaNT8wb7pcE8JS5G#rd](http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&mid=2650661762&idx=1&sn=8282241cf7414030f4e1d315a173beb1&scene=23&srcid=0527o8THYaNT8wb7pcE8JS5G#rd)
@@ -273,3 +281,4 @@ git rebase 主线 分支线
 - [【最新】解决Github网页上图片显示失败的问题](https://zhuanlan.zhihu.com/p/148370694)
 - [Git Flow 的正确使用姿势](https://www.jianshu.com/p/41910dc6ef29)
 - [GitHub Desktop 拉取 GitHub上 Tag 版本代码](https://www.cnblogs.com/zongsir/p/10292013.html)
+- [git将某分支的某次提交合并到另一分支](https://blog.csdn.net/I_recluse/article/details/93619400)
