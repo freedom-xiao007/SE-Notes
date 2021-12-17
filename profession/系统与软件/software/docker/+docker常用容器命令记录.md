@@ -320,6 +320,7 @@ admin password
 ### Centos
 ```
 docker run -tid --name centos8 -p 82:80 -v D:/temp/centos/:/root/ centos
+docker run -tid --name centos8 --net=host -v D:/temp/centos/:/root/ centos
 ```
 
 ### 本地镜像仓库
