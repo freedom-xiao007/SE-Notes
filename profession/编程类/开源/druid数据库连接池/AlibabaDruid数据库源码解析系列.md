@@ -11,4 +11,4 @@
 ## Demo
 - [github code](https://github.com/lw1243925457/DataSourcePoolDemo)
 - [数据库连接池Demo（1）单线程初步](https://juejin.cn/post/7030807425905066014/)
-- [数据库连接池Demo（2）多线程初步](https://juejin.cn/published)
+- [数据库连接池Demo（2）多线程初步](https://juejin.cn/post/7032078700405325837/)
