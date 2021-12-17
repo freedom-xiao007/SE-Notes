@@ -208,6 +208,27 @@ docker container prune
 docker tag repository:tag repository:newTag
 ```
 
+### 开发2375端口给外网
+
+#### Windows
+
+Dockers Engine加上下面的配置：
+
+```tex
+"hosts": ["tcp://0.0.0.0:2375"]
+```
+
+
+
+使用命令进行端口代理：
+
+```powershell
+netsh interface portproxy add v4tov4 listenport=2375 connectaddress=127.0.0.1 connectport=2375 listenaddress=192.168.110.242 protocol=tcp
+```
+
+- [Windows开启Docker远程连接](https://www.jianshu.com/p/c45d47bd5769?spm=a2c6h.13066369.0.0.69459afav3i1E7)
+- [windows下，解决docker2375端口连不上，telnet不通](https://blog.csdn.net/qq_16171815/article/details/115701262)
+
 ## 常用仓库链接
 - [mysql](https://hub.docker.com/_/mysql)
 
@@ -218,3 +239,4 @@ docker tag repository:tag repository:newTag
 - [Docker最佳实践：构建最小镜像](https://zhuanlan.zhihu.com/p/38552260)
 - [微容器：更小的，更轻便的Docker容器](http://dockone.io/article/1035)
 - [docker for windows 设置aliyun加速以及改变pull镜像位置](https://blog.csdn.net/gx947791229/article/details/76512660)
+- [docker容器中没有ifconfig或ping命令](https://blog.csdn.net/qq_40133908/article/details/106388175)
