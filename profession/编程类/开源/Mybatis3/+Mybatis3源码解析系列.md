@@ -7,6 +7,7 @@ Mybatis作为一个优秀的Java持久化框架，在我们的日常工作中相
 ## 解析文章目录
 - [MyBatis3源码解析（1）探索准备](https://juejin.cn/post/7058354949209456653)
 - [MyBatis3源码解析(2)数据库连接](https://juejin.cn/post/7061031527001358349)
+- [MyBatis3源码解析(3)查询语句执行](https://juejin.cn/post/7061427063793647647/)
 
 ## 参考链接
 - 《MyBatis3源码深度解析》：这本书确实不错，通读一两遍后，自己探索Debug，有很多的帮助
