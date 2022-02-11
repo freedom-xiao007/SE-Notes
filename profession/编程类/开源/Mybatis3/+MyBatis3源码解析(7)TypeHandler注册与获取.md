@@ -271,5 +271,13 @@ public class GenericTokenParser {
 ```
 
 ## 总结
+在本篇文章中，我们初步探索了Mapper初始化的一部分，着重解析了TypeHandler相关的注册和MapperProxy生成时TypeHandler对应的获取
 
-类 字段 SQL字段如何对应上的？
+核心流程如下：
+
+- 1.注册TypeHandler：放入Map中
+- 2.MapperProxy生成，字段的TypeHandler是在SQLSource中，生成SQLSource
+- 3.解析SQL语句，得到对应参数和返回字段的TypeHandler：这部分没细研究，但后面如果遇到问题，可以回来参考参考
+- 4.根据JavaType和jdbcType得到对应的TypeHandler
+
+这部分还有很多的细节没来得及去细看，但如果遇到问题，还是能提供方向性的指导
