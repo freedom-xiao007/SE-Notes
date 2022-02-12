@@ -14,9 +14,10 @@ GitHub： [https://lw1243925457.github.io/blog/#](https://lw1243925457.github.io
 Gitee: [https://free-love.gitee.io/blog/](https://free-love.gitee.io/blog/)
 
 ## 相关博客地址
+注：掘金更新比较勤快，其他的忙的时候可能来不及同步
+
+- [掘金](https://juejin.cn/user/2031553217040632)
+- [InfoQ](https://www.infoq.cn/profile/0C2239867AFF5F/publish)
 - [CSDN](https://blog.csdn.net/github_35735591)
 - [博客园](https://www.cnblogs.com/freedom-only/)
 - [知乎](https://www.zhihu.com/people/liu-yun-xiao-36-22)
-- [掘金](https://juejin.cn/user/2031553217040632)
-- [InfoQ](https://www.infoq.cn/profile/0C2239867AFF5F/publish)
-
