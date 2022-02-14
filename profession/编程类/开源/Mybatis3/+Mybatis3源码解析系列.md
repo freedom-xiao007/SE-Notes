@@ -14,5 +14,8 @@ Mybatis作为一个优秀的Java持久化框架，在我们的日常工作中相
 - [MyBatis3源码解析(7)TypeHandler注册与获取](https://juejin.cn/post/7063234640848519175/)
 - [MyBatis3源码解析(8)MyBatis与Spring的结合](https://juejin.cn/post/7063649335686201381/)
 
+## Demo 编写
+- [MyBatis Demo 编写（1）基础功能搭建](https://juejin.cn/post/7064351012022124580/)
+
 ## 参考链接
 - 《MyBatis3源码深度解析》：这本书确实不错，通读一两遍后，自己探索Debug，有很多的帮助
