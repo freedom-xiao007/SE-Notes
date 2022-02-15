@@ -16,6 +16,7 @@ Mybatis作为一个优秀的Java持久化框架，在我们的日常工作中相
 
 ## Demo 编写
 - [MyBatis Demo 编写（1）基础功能搭建](https://juejin.cn/post/7064351012022124580/)
+- [MyBatis Demo 编写（2）结果映射转换处理](https://juejin.cn/post/7064907905669005342/)
 
 ## 参考链接
 - 《MyBatis3源码深度解析》：这本书确实不错，通读一两遍后，自己探索Debug，有很多的帮助
