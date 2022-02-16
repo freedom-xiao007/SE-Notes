@@ -167,6 +167,12 @@ public class MonitorActivityService extends Service {
 
     <application
     .......
+        <!-- Declare foreground service -->
+        <service
+            android:name=".server.foreground.MonitorActivityService"
+            android:enabled="true"
+            android:exported="true" />
+        <!-- Declare activity -->
     </application>
 
 </manifest>
