@@ -33,10 +33,21 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+    // 如何想进行HTTP访问，需要设置
+    android:networkSecurityConfig="@xml/network_security_config"
     ......
     </application>
 
 </manifest>
+```
+
+http请求的xml配置如下,可在res文件夹下新建文件：network_security_config.xml
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true"></base-config>
+</network-security-config>
 ```
 
 ### 配置Retrofit Client
