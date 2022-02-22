@@ -1,5 +1,11 @@
-# Java Storm
+# Java Storm 示例运行
 ***
+
+这是我参与2022首次更文挑战的第23天，活动详情查看：[2022首次更文挑战](https://juejin.cn/post/7052884569032392740)
+
+## 简介
+本篇中介绍大数据处理中的Storm的示例使用，将详细从依赖、代码等展示如果运行一个Storm示例
+
 ## 本地模式
 ### Maven 配置
 &ensp;&ensp;&ensp;&ensp;在pom.xml文件添加下面的依赖，本地模式运行需要去掉scope字段，暂时把它注释掉,在项目运行的vm参数中填写-Djava.net.preferIPv4Stack=true，避免一些运行错误
