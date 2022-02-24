@@ -1,5 +1,8 @@
 # Spring Boot WebSocket 使用记录
 ***
+
+这是我参与2022首次更文挑战的第28天，活动详情查看：[2022首次更文挑战](https://juejin.cn/post/7052884569032392740)
+
 ## 简介
 &ensp;&ensp;&ensp;&ensp;使用spring boot 提供的websocket搭建websocket服务器，其中主要的有下面的三个部分：
 
