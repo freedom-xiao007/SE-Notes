@@ -1,6 +1,8 @@
 # Spring Boot Mybatis 入门示例
 ***
 
+这是我参与2022首次更文挑战的第27天，活动详情查看：[2022首次更文挑战](https://juejin.cn/post/7052884569032392740)
+
 **基于Spring Boot 2.3.4，Junit5**
 
 ## 步骤说明
