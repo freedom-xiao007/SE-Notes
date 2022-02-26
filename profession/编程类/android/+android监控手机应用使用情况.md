@@ -158,7 +158,7 @@ public class MonitorActivityService extends Service {
     package="com.example.selfgrowth">
 
     // 应用使用情况权限
-    <permission android:name="android.permission.PACKAGE_USAGE_STATS"/>
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions"/>
     ......
 
     <queries>
