@@ -53,10 +53,14 @@ go version
 ### 连接登录
 打开Gateway，输入自己对应的用户名和服务器ip，输入相应的密码
 
+![屏幕截图 2022-03-02 055054.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/09ac5603e37b4d12baac1074080700e6~tplv-k3u1fbpfcp-watermark.image?)
+
 ### 打开工程
 选择对应的IDE，这里选择Goland，然后选择上面我们建立好的工程目录
 
 安装和准备工作需要较长的时间，需要耐心等候
+
+![屏幕截图 2022-03-02 055725.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d182c8ad2392456d883d7ad596eeff30~tplv-k3u1fbpfcp-watermark.image?)
 
 ### 运行工程
 进去以后，先配置我们前面配置的Go，一路选择我们前面安装路径上的go即可：/usr/local/go
