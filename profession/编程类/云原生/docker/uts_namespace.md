@@ -34,12 +34,12 @@ go run uts_namespace.go
 pstree -pl
 ```
 
+![屏幕截图 2022-03-02 061412.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8d13696a61fe4e79a46550d6cc7ab2ec~tplv-k3u1fbpfcp-watermark.image?)
+
+
 ```sh
-sh-4.2# hostname
-VM-20-11-centos
-sh-4.2# hostname -b test
-sh-4.2# hostname
-test
+sh-4.2# echo $$
+20415
 sh-4.2# readlink /proc/20415/ns/uts
 uts:[4026532170]
 sh-4.2# readlink /proc/20411/ns/uts
