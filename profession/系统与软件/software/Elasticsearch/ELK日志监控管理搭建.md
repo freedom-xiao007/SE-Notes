@@ -22,3 +22,4 @@ setup -E setup.kibana.host=192.168.110.109:5601 \
 - [Logstash Reference 7.5](https://www.elastic.co/guide/en/logstash/7.5/index.html)
 - [ Getting Started With Filebeat](https://www.elastic.co/guide/en/beats/filebeat/7.5/filebeat-getting-started.html)
 - [ Running Filebeat on Docker ](https://www.elastic.co/guide/en/beats/filebeat/7.5/running-on-docker.html)
+- [Step 2: Configure Filebeat](https://www.elastic.co/guide/en/beats/filebeat/7.5/filebeat-configuration.html)
