@@ -82,3 +82,21 @@ cd /sys/fs/cgroup/memory
   echo "100m" >> memory.limit_in_bytes
    echo 0 >> memory.swappiness
 ```
+
+经过多次尝试没有达到书中的效果：
+
+如果是先启动stress命令，然后再修改内存限制或将其pid加入tasks，多次尝试后，发现其内存不会降低
+
+但如果是先将当前shell的pid加入tasks来现在100M的内容，然后启动stress名，但其直接启动失败，如下：
+
+```sh
+ecd\liuwei_1689727483221@vflb0qf5pdzfnun:/sys/fs/cgroup/memory/test-limit-memory$ stress --vm-bytes 200m --vm-keep -m 1
+stress: info: [56947] dispatching hogs: 0 cpu, 0 io, 1 vm, 0 hdd
+stress: FAIL: [56947] (415) <-- worker 56948 got signal 9
+stress: WARN: [56947] (417) now reaping child worker processes
+stress: FAIL: [56947] (451) failed run completed in 1s
+```
+
+感觉限制应该是生效了，但没有像书中那样看到明显的效果
+
+如果各位老哥有什么更好的思路，请在评论区告知，非常感谢
