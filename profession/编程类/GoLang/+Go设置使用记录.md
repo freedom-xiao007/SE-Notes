@@ -18,5 +18,13 @@ $ go env -w GO111MODULE=on
 $ go env -w GOPROXY=https://goproxy.cn,direct
 ```
 
+## JetBrains Gateway Goland 使用
+在服务器上，IDE偶尔不能自动解决依赖，有点麻烦，但可以在终端中使用命令进行解决
+
+```sh
+go mod init <project name>
+go mod tidy
+```
+
 ## 参考链接
 - [Goproxy 中国](https://github.com/goproxy/goproxy.cn/blob/master/README.zh-CN.md)
