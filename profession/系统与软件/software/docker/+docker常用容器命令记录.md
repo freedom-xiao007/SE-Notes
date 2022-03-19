@@ -328,6 +328,21 @@ docker run -tid --name centos8 --net=host -v D:/temp/centos/:/root/ centos
 docker run -d -p 5000:5000 --name registry --restart=always -v D:/Docker/registry:/var/lib/registry registry:latest
 
 # 在docker deamon 中加入 127.0.0.1:5000
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "20GB",
+      "enabled": true
+    }
+  },
+  "experimental": false,
+  "features": {
+    "buildkit": true
+  },
+  "insecure-registries": [
+    "127.0.0.1:5000"
+  ]
+}
 
 # 上传
 docker tag xxxx:test 192.168.110.196:5000/xxxx:test
