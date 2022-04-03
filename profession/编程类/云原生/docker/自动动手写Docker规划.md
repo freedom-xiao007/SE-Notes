@@ -42,6 +42,7 @@
 - [自己动手写Docker系列 -- 3.1构造实现run命令版本的容器](https://juejin.cn/post/7081379481910411294)
 - [自己动手写Docker系列 -- 3.2增加容器资源限制](https://juejin.cn/post/7081757532053569543)
 - [自己动手写Docker系列 -- 3.3使用命令管道优化参数传递](https://juejin.cn/post/7082082864098967565)
+- [自己动手写Docker系列 -- 4.1使用busybox创建容器](https://juejin.cn/post/7082480992614613022)
 
 ## 参考资料
 - 《自己动手写Docker》
