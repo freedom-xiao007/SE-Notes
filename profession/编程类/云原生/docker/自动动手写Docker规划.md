@@ -45,6 +45,7 @@
 - [自己动手写Docker系列 -- 4.1使用busybox创建容器](https://juejin.cn/post/7082480992614613022)
 - [自己动手写Docker系列 -- 4.2使用AUFS包装busybox](https://juejin.cn/post/7082873999872491527)
 - [自己动手写Docker系列 -- 4.3实现volume数据卷](https://juejin.cn/post/7083203141440634916)
+- [自己动手写Docker系列 -- 5.1实现容器的后台运行](https://juejin.cn/post/7083606684358148103)
 
 ## 参考资料
 - 《自己动手写Docker》
