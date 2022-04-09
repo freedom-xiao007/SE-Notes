@@ -48,6 +48,7 @@
 - [自己动手写Docker系列 -- 5.1实现容器的后台运行](https://juejin.cn/post/7083606684358148103)
 - [自己动手写Docker系列 -- 5.2实现查看运行中的容器](https://juejin.cn/post/7083966324442923015)
 - [自己动手写Docker系列 -- 5.3实现logs命令查看容器日志](https://juejin.cn/post/7084371162905444382)
+- [自己动手写Docker系列 -- 5.4实现进入容器的namespace，exec命令](https://juejin.cn/post/7084729876522991653)
 
 ## 参考资料
 - 《自己动手写Docker》
