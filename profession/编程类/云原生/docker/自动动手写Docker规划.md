@@ -50,6 +50,7 @@
 - [自己动手写Docker系列 -- 5.3实现logs命令查看容器日志](https://juejin.cn/post/7084371162905444382)
 - [自己动手写Docker系列 -- 5.4实现进入容器的namespace，exec命令](https://juejin.cn/post/7084729876522991653)
 - [自己动手写Docker系列 -- 5.5实现容器停止](https://juejin.cn/post/7085077429412167693)
+- [自己动手写Docker系列 -- 5.6实现删除容器](https://juejin.cn/post/7085465652336525320)
 
 ## 参考资料
 - 《自己动手写Docker》
