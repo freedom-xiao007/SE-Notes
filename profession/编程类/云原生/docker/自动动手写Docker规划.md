@@ -53,6 +53,7 @@
 - [自己动手写Docker系列 -- 5.6实现删除容器](https://juejin.cn/post/7085465652336525320)
 - [自己动手写Docker系列 -- 5.7实现通过容器制作镜像](https://juejin.cn/post/7086069688664326157)
 - [自己动手写Docker系列 -- 5.8实现容器制定环境变量运行](https://juejin.cn/post/7086220954551975973)
+- [自己动手写Docker系列 -- 6.1 ip分配管理](https://juejin.cn/post/7086559244275122207)
 
 ## 参考资料
 - 《自己动手写Docker》
