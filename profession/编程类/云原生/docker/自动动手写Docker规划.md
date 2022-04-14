@@ -51,6 +51,8 @@
 - [自己动手写Docker系列 -- 5.4实现进入容器的namespace，exec命令](https://juejin.cn/post/7084729876522991653)
 - [自己动手写Docker系列 -- 5.5实现容器停止](https://juejin.cn/post/7085077429412167693)
 - [自己动手写Docker系列 -- 5.6实现删除容器](https://juejin.cn/post/7085465652336525320)
+- [自己动手写Docker系列 -- 5.7实现通过容器制作镜像](https://juejin.cn/post/7086069688664326157)
+- [自己动手写Docker系列 -- 5.8实现容器制定环境变量运行](https://juejin.cn/post/7086220954551975973)
 
 ## 参考资料
 - 《自己动手写Docker》
