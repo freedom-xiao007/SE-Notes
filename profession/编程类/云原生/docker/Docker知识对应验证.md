@@ -4,6 +4,15 @@
 
 ## 简介
 
+通过前面一系列的docker相关的代码编写，对于docker的基础也有了一定的了解，这边文章的主要目的就是验证下之前的相关知识在docker中的应用
+
+## 思路梳理
+
+- 容器的可写层
+- 容器的日志存放位置
+- 容器的信息存放位置
+- 容器的网络配置
+
 ## 网络部分
 ```powershell
 docker run -tid --name centos8 centos:8 bash
