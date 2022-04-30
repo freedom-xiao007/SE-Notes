@@ -1,4 +1,4 @@
-# 自己动手写 Docker 系列
+# 自己动手写 Docker 系列文章总览
 
 ---
 
@@ -56,7 +56,7 @@
 
 看了下，windows 是基于：[https://github.com/microsoft/hcsshim](https://github.com/microsoft/hcsshim)
 
-感觉难道有点大，看看后面时间了，时间不紧的话，可以尝试尝试
+感觉难度有点大，看看后面时间了，时间不紧的话，可以尝试尝试
 
 ## 运行说明
 
@@ -81,7 +81,17 @@ go build mydocker/main.go
 
 如果在克隆本工程，运行时出现报错：找不到 /proc
 
-需要将 busybox 下的内容复制到工程根目录下的 /mnt 目录下
+需要将 busybox 下的内容复制到工程根目录下的 /opt/busybox,命令如下（压缩包放到了gitee上，可以使用命令直接下载）
+
+```powershell
+wget https://gitee.com/free-love/docker-demo/attach_files/1048146/download/busybox.tar
+
+➜  dockerDemo git:(main) ✗ mkdir /opt/busybox
+➜  dockerDemo git:(main) ✗ tar -xvf ./busybox.tar -C /opt/busybox/
+
+➜  dockerDemo git:(main) ✗ ls /opt/busybox
+bin  dev  etc  home  proc  root  sys  tmp  usr  var
+```
 
 ## 实践文档
 
