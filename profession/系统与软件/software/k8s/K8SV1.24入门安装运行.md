@@ -4,6 +4,62 @@
 
 
 
+### CRI 安装
+
+```sh
+curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/CentOS_7/devel:kubic:libcontainers:stable.repo
+
+curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:1.23.0.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.23:/1.23.0/CentOS_7/devel:kubic:libcontainers:stable:cri-o:1.23:1.23.0.repo
+
+yum install -y cri-o
+systemctl daemon-reload
+systemctl enable crio --now
+
+sed -i "s/pause_image = .*/pause_image = \"registry.cn-hangzhou.aliyuncs.com\/google_containers\/pause:3.1\"/g" /etc/crio/crio.conf
+systemctl restart crio
+
+[root@VM-16-14-centos ~]# curl -v --unix-socket /var/run/crio/crio.sock http://localhost/info
+* About to connect() to localhost port 80 (#0)
+*   Trying /var/run/crio/crio.sock...
+* Failed to set TCP_KEEPIDLE on fd 3
+* Failed to set TCP_KEEPINTVL on fd 3
+* Connected to localhost (/var/run/crio/crio.sock) port 80 (#0)
+> GET /info HTTP/1.1
+> User-Agent: curl/7.29.0
+> Host: localhost
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Type: application/json
+< Date: Sun, 08 May 2022 02:49:37 GMT
+< Content-Length: 239
+<
+* Connection #0 to host localhost left intact
+{"storage_driver":"overlay","storage_root":"/var/lib/containers/storage","cgroup_driver":"systemd","default_id_mappings":{"uids":[{"container_id":0,"host_id":0,"size":4294967295}],"gids":[{"container_id":0,"host_id":0,"size":4294967295}]}}
+
+
+cat <<EOF | tee /etc/modules-load.d/crio.conf
+overlay
+br_netfilter
+EOF
+
+modprobe overlay
+modprobe br_netfilter
+
+# 配置 sysctl 参数，这些配置在重启之后仍然起作用
+cat <<EOF | tee /etc/sysctl.d/99-kubernetes-cri.conf
+net.bridge.bridge-nf-call-iptables  = 1
+net.ipv4.ip_forward                 = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+EOF
+
+sysctl --system
+```
+
+
+
+### 系统设置准备
+
 ```sh
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 br_netfilter
@@ -24,6 +80,8 @@ Ncat: Connection refused.
 
 
 
+### kubelet kubeadm kubectl 安装
+
 ```sh
 默认情况下，Kubernetes 使用 容器运行时接口（Container Runtime Interface，CRI） 来与你所选择的容器运行时交互。
 
@@ -41,7 +99,8 @@ EOF
 setenforce 0
 sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
-yum -y install kubelet kubeadm kubectl
+yum remove kubelet kubeadm kubectl
+yum -y install kubelet-1.23.0 kubeadm-1.23.0 kubectl-1.23.0
 systemctl enable --now kubelet
 
 
@@ -80,34 +139,11 @@ journalctl -xeu kubelet
 
 
 [root@VM-16-14-centos ~]# kubeadm version
-kubeadm version: &version.Info{Major:"1", Minor:"24", GitVersion:"v1.24.0", GitCommit:"4ce5a8954017644c5420bae81d72b09b735c21f0", GitTreeState:"clean", BuildDate:"2022-05-03T13:44:24Z", GoVersion:"go1.18.1", Compiler:"gc", Platform:"linux/amd64"}
+kubeadm version: &version.Info{Major:"1", Minor:"23", GitVersion:"v1.23.0", GitCommit:"ab69524f795c42094a6630298ff53f3c3ebab7f4", GitTreeState:"clean", BuildDate:"2021-12-07T18:15:11Z", GoVersion:"go1.17.3", Compiler:"gc", Platform:"linux/amd64"}
 
 [root@VM-16-14-centos ~]# kubectl version
-WARNING: This version information is deprecated and will be replaced with the output from kubectl version --short.  Use --output=yaml|json to get the full version.
-Client Version: version.Info{Major:"1", Minor:"24", GitVersion:"v1.24.0", GitCommit:"4ce5a8954017644c5420bae81d72b09b735c21f0", GitTreeState:"clean", BuildDate:"2022-05-03T13:46:05Z", GoVersion:"go1.18.1", Compiler:"gc", Platform:"linux/amd64"}
-Kustomize Version: v4.5.4
+Client Version: version.Info{Major:"1", Minor:"23", GitVersion:"v1.23.0", GitCommit:"ab69524f795c42094a6630298ff53f3c3ebab7f4", GitTreeState:"clean", BuildDate:"2021-12-07T18:16:20Z", GoVersion:"go1.17.3", Compiler:"gc", Platform:"linux/amd64"}
 The connection to the server localhost:8080 was refused - did you specify the right host or port?
-```
-
-
-
-```sh
-cat <<EOF | tee /etc/modules-load.d/crio.conf
-overlay
-br_netfilter
-EOF
-
-modprobe overlay
-modprobe br_netfilter
-
-# 配置 sysctl 参数，这些配置在重启之后仍然起作用
-cat <<EOF | tee /etc/sysctl.d/99-kubernetes-cri.conf
-net.bridge.bridge-nf-call-iptables  = 1
-net.ipv4.ip_forward                 = 1
-net.bridge.bridge-nf-call-ip6tables = 1
-EOF
-
-sysctl --system
 ```
 
 
@@ -129,40 +165,6 @@ Centos 7	CentOS_7
 
 
 ```sh
-curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/CentOS_7/devel:kubic:libcontainers:stable.repo
-
-curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:1.23.0.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.23:/1.23.0/CentOS_7/devel:kubic:libcontainers:stable:cri-o:1.23:1.23.0.repo
-
-yum install -y cri-o
-systemctl daemon-reload
-systemctl enable crio --now
-
-sed -i "s/pause_image = .*/pause_image = \"registry.cn-hangzhou.aliyuncs.com\/google_containers\/pause:3.1\"/g" /etc/crio/crio.conf
-systemctl restart crio
-
-[root@VM-16-14-centos ~]# curl -v --unix-socket /var/run/crio/crio.sock http://localhost/info
-* About to connect() to localhost port 80 (#0)
-*   Trying /var/run/crio/crio.sock...
-* Failed to set TCP_KEEPIDLE on fd 3
-* Failed to set TCP_KEEPINTVL on fd 3
-* Connected to localhost (/var/run/crio/crio.sock) port 80 (#0)
-> GET /info HTTP/1.1
-> User-Agent: curl/7.29.0
-> Host: localhost
-> Accept: */*
->
-< HTTP/1.1 200 OK
-< Content-Type: application/json
-< Date: Sun, 08 May 2022 02:49:37 GMT
-< Content-Length: 239
-<
-* Connection #0 to host localhost left intact
-{"storage_driver":"overlay","storage_root":"/var/lib/containers/storage","cgroup_driver":"systemd","default_id_mappings":{"uids":[{"container_id":0,"host_id":0,"size":4294967295}],"gids":[{"container_id":0,"host_id":0,"size":4294967295}]}}
-```
-
-
-
-```sh
 [root@VM-16-14-centos ~]# cat /etc/sysconfig/kubelet
 KUBELET_EXTRA_ARGS=
 
@@ -172,21 +174,22 @@ KUBELET_EXTRA_ARGS=
 KUBELET_EXTRA_ARGS=
 KUBELET_CGROUP_ARGS=--cgroup-driver=systemd
 
+vi /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 # !!在 kubelet 启动文件 /usr/lib/systemd/system/kubelet.service.d/10-kubeadm.conf 增加 KUBELET_CGROUP_ARGS 参数 !!
 # ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS $KUBELET_CONFIG_ARGS $KUBELET_KUBEADM_ARGS $KUBELET_EXTRA_ARGS $KUBELET_CGROUP_ARGS
 
-# Note: This dropin only works with kubeadm and kubelet v1.11+
+cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 [Service]
 Environment="KUBELET_KUBECONFIG_ARGS=--bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf"
 Environment="KUBELET_CONFIG_ARGS=--config=/var/lib/kubelet/config.yaml"
-# This is a file that "kubeadm init" and "kubeadm join" generates at runtime, populating the KUBELET_KUBEADM_ARGS variable dynamically
+# 这是 "kubeadm init" 和 "kubeadm join" 运行时生成的文件，动态地填充 KUBELET_KUBEADM_ARGS 变量
 EnvironmentFile=-/var/lib/kubelet/kubeadm-flags.env
-# This is a file that the user can use for overrides of the kubelet args as a last resort. Preferably, the user should use
-# the .NodeRegistration.KubeletExtraArgs object in the configuration files instead. KUBELET_EXTRA_ARGS should be sourced from this file.
-EnvironmentFile=-/etc/sysconfig/kubelet
+# 这是一个文件，用户在不得已下可以将其用作替代 kubelet args。
+# 用户最好使用 .NodeRegistration.KubeletExtraArgs 对象在配置文件中替代。
+# KUBELET_EXTRA_ARGS 应该从此文件中获取。
+EnvironmentFile=-/etc/default/kubelet
 ExecStart=
 ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS $KUBELET_CONFIG_ARGS $KUBELET_KUBEADM_ARGS $KUBELET_EXTRA_ARGS
-
 
 systemctl daemon-reload && systemctl enable kubelet --now
 systemctl restart kubelet
