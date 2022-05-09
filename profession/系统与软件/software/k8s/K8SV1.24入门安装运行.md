@@ -45,6 +45,40 @@ yum -y install kubelet kubeadm kubectl
 systemctl enable --now kubelet
 
 
+vi /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+[Service]
+Environment="KUBELET_KUBECONFIG_ARGS=--bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf"
+Environment="KUBELET_CONFIG_ARGS=--config=/var/lib/kubelet/config.yaml"
+# 这是 "kubeadm init" 和 "kubeadm join" 运行时生成的文件，动态地填充 KUBELET_KUBEADM_ARGS 变量
+EnvironmentFile=-/var/lib/kubelet/kubeadm-flags.env
+# 这是一个文件，用户在不得已下可以将其用作替代 kubelet args。
+# 用户最好使用 .NodeRegistration.KubeletExtraArgs 对象在配置文件中替代。
+# KUBELET_EXTRA_ARGS 应该从此文件中获取。
+EnvironmentFile=-/etc/default/kubelet
+ExecStart=
+ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS $KUBELET_CONFIG_ARGS $KUBELET_KUBEADM_ARGS $KUBELET_EXTRA_ARGS
+
+
+systemctl daemon-reload
+systemctl restart kubelet
+systemctl status kubelet
+
+[root@VM-16-14-centos k8s]# systemctl status kubelet
+● kubelet.service - kubelet: The Kubernetes Node Agent
+   Loaded: loaded (/usr/lib/systemd/system/kubelet.service; enabled; vendor preset: disabled)
+  Drop-In: /etc/systemd/system/kubelet.service.d
+           └─10-kubeadm.conf
+   Active: active (running) since Sun 2022-05-08 14:00:11 CST; 54s ago
+     Docs: https://kubernetes.io/docs/
+ Main PID: 12618 (kubelet)
+   CGroup: /system.slice/kubelet.service
+           └─12618 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf --config=/var/lib/kubelet/config.yaml --container-runtime=remot...
+
+journalctl -xeu kubelet
+
+
+
+
 [root@VM-16-14-centos ~]# kubeadm version
 kubeadm version: &version.Info{Major:"1", Minor:"24", GitVersion:"v1.24.0", GitCommit:"4ce5a8954017644c5420bae81d72b09b735c21f0", GitTreeState:"clean", BuildDate:"2022-05-03T13:44:24Z", GoVersion:"go1.18.1", Compiler:"gc", Platform:"linux/amd64"}
 
@@ -95,12 +129,7 @@ Centos 7	CentOS_7
 
 
 ```sh
-sudo curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/devel:kubic:libcontainers:stable.repo
-sudo curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.repo https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/devel:kubic:libcontainers:stable:cri-o:$VERSION.repo
-
-
 curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/CentOS_7/devel:kubic:libcontainers:stable.repo
-curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:1.24.0.repo https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:1.24.0/CentOS_7/devel:kubic:libcontainers:stable:cri-o:1.24.0.repo
 
 curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:1.23.0.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.23:/1.23.0/CentOS_7/devel:kubic:libcontainers:stable:cri-o:1.23:1.23.0.repo
 
@@ -284,7 +313,11 @@ To see the stack trace of this error execute with --v=5 or higher
 
 kubeadm reset
 echo 1 > /proc/sys/net/ipv4/ip_forward
+kubeadm reset -f
 kubeadm init --config kubeadm-config.yaml
+
+journalctl -xeu kubelet
+journalctl -xeu crio
 
 
 
