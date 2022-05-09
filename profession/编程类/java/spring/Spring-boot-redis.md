@@ -1,6 +1,16 @@
 # Spring boot redis
 ***
 
+### 模糊删除实现
+
+```java
+// 删除原来的缓存
+Set<String> keys = redisTemplate.keys("somekey:*");
+redisTemplate.delete(keys);
+```
+
+### 基本封装示例
+
 ```java
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
