@@ -1,10 +1,15 @@
-# MongoDB
+# MongoDB Java 原生使用示例
 ***
-## Code
-### 单例实现
-```java
-package cn.nssas.eelantech.utils;
 
+## 简介
+MongoDB作为一个常用的数据库，Spring对其也进行了很好的支持，但了解Java如何原生使用对应使用Spring Data封装后的API是很有帮助的
+
+## 代码示例
+本篇中就简单用一个单例示例进行展示，其中对常用的方法进行简单的封装
+
+对常用的增删改查进行了简单的封装，大致如下
+
+```java
 import com.mongodb.client.*;
 import com.mongodb.client.result.UpdateResult;
 import org.apache.log4j.Logger;
@@ -20,8 +25,6 @@ import static com.mongodb.client.model.Filters.eq;
 
 /**
  * MongoDB工具类，只存在一个，使用单例模式实现，其方法使用示例在测试文档中有 MongoDBUtilTest
- * @author liu wei
- * @date 2019.1.29
  */
 public class MongoDBUtil {
     private static final Logger logger = Logger.getLogger(MongoDBUtil.class);
@@ -241,7 +244,7 @@ public class MongoDBUtil {
 }
 ```
 
-### 测试代码
+## 测试代码
 ```java
 package utils;
 
@@ -434,8 +437,12 @@ public class MongoDBUtilTest {
         MongoDBUtil.getInstance().dropCollection("test");
     }
 }
-
 ```
+
+## 总结
+原生的MongoDB使用方式就是如上所示，如果使用过Spring mongodb data的，会发现确实比这个好用很多
+
+但了解原生的使用方式，也有助于我们了解其备用的封装原理，能更好的使用Spring MongoDB data
 
 ## 参考链接
 - [How to use “$or” operator using documents in mongodb using java](https://stackoverflow.com/questions/35982474/how-to-use-or-operator-using-documents-in-mongodb-using-java)

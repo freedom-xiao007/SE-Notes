@@ -268,7 +268,61 @@ git rebase 主线 分支线
 git cherry-pick 7fcb3defff
 ```
 
+#### tag相关的操作
+```sh
+// 查看tag，列出所有tag，列出的tag是按字母排序的，和创建时间没关系。
+$ git tag
+v0.1
+v1.3
 
+//查看指定版本的tag，git tag -l “v1.4.2.**”
+$ git tag -l 'v1.4.2.*'
+v1.4.2.1
+v1.4.2.2
+v1.4.2.3
+v1.4.2.4
+
+//显示指定tag的信息
+$ git show v1.4
+
+//创建轻量级tag：这样创建的tag没有附带其他信息
+git tag v1.0
+
+//带信息的tag：-m后面带的就是注释信息，这样在日后查看的时候会很有用
+git tag -a v1.0 -m 'first version'
+
+//我们在执行 git push 的时候，tag是不会上传到服务器的，比如现在的github，创建 tag 后 git push ，在github网页上是看不到tag 的，为了共享这些tag，你必须这样：
+git push origin v1.0
+或者
+//将所有tag 一次全部push到github上。
+git push origin --tags
+
+//删除本地tag
+git tag -d v1.0
+
+//删除github远端的指定tag
+git push origin :refs/tags/v1.0.0
+
+# 创建一个基于指定tag的分支
+git checkout -b tset v0.1.0
+```
+
+#### 代理设置
+```sh
+git config --global https.proxy http://127.0.0.1:1080
+
+git config --global https.proxy https://127.0.0.1:1080
+
+git config --global --unset http.proxy
+
+git config --global --unset https.proxy
+
+
+npm config delete proxy
+
+git config --global http.proxy 'socks5://127.0.0.1:1080'
+git config --global https.proxy 'socks5://127.0.0.1:1080'
+```
 
 ## 参考链接
 - [http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&mid=2650661735&idx=1&sn=9aceac07d272e9202d1b5294f857a5ff&scene=23&srcid=0527tuPapv7riaNZFSHQGe4w#rd](http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&mid=2650661735&idx=1&sn=9aceac07d272e9202d1b5294f857a5ff&scene=23&srcid=0527tuPapv7riaNZFSHQGe4w#rd)
@@ -282,3 +336,4 @@ git cherry-pick 7fcb3defff
 - [Git Flow 的正确使用姿势](https://www.jianshu.com/p/41910dc6ef29)
 - [GitHub Desktop 拉取 GitHub上 Tag 版本代码](https://www.cnblogs.com/zongsir/p/10292013.html)
 - [git将某分支的某次提交合并到另一分支](https://blog.csdn.net/I_recluse/article/details/93619400)
+- [Github 中Tag的使用](https://www.jianshu.com/p/36202c29e6ae)

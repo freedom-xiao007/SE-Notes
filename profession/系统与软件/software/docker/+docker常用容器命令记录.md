@@ -26,11 +26,10 @@ docker run -d --name redis -p 6379:6379 redis --requirepass "password"
 docker run -dit --name mongo -p 27017:27017 mongo
 # windows
 docker run  -d `
-  -e MONGO_INITDB_ROOT_USERNAME=mongoadmin`
-  -e MONGO_INITDB_ROOT_PASSWORD=secret `
-  -v /ect/localtime:/etc/localtime`
-  -p 3389:27017 `
-  --name mongodb`
+  -e MONGO_INITDB_ROOT_USERNAME=local `
+  -e MONGO_INITDB_ROOT_PASSWORD=local `
+  -p 27017:27017  `
+  --name mongodb `
   --restart always mongo:latest
 
 docker run  -d -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=secret -v /etc/localtime:/etc/localtime:ro -p 3389:27017  --name mongodb --restart always mongo:latest
@@ -321,13 +320,35 @@ admin password
 ```
 docker run -tid --name centos8 -p 82:80 -v D:/temp/centos/:/root/ centos
 docker run -tid --name centos8 --net=host -v D:/temp/centos/:/root/ centos
+
+cd /etc/yum.repos.d/
+sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+yum update -y
 ```
+
+- [Failed to download metadata for repo ‘AppStream’ [CentOS]](https://techglimpse.com/failed-metadata-repo-appstream-centos-8/)
 
 ### 本地镜像仓库
 ```
 docker run -d -p 5000:5000 --name registry --restart=always -v D:/Docker/registry:/var/lib/registry registry:latest
 
 # 在docker deamon 中加入 127.0.0.1:5000
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "20GB",
+      "enabled": true
+    }
+  },
+  "experimental": false,
+  "features": {
+    "buildkit": true
+  },
+  "insecure-registries": [
+    "127.0.0.1:5000"
+  ]
+}
 
 # 上传
 docker tag xxxx:test 192.168.110.196:5000/xxxx:test
