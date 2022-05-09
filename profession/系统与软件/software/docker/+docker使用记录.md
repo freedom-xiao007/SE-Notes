@@ -120,6 +120,11 @@ docker cp 本地文件的路径 container_id:<docker容器内的路径>
 docker cp  /home/vagrant/test.txt 10704c9eb7bb:/root/test.text
 ```
 
+### 查看容器原来的配置
+```shell
+docker inspect <CONTAINER-NAME> OR <CONTAINER-ID>
+```
+
 ### 添加镜像加速器
 #### centos
 ```bash
