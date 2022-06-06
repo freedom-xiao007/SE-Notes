@@ -26,3 +26,17 @@ CMD java -jar /app/oauth-0.0.1-SNAPSHOT.jar
 第三是将当前目录的已经构建后的jar添加到容器中
 
 最后是容器启动时就运行的命令，启动Java镜像
+
+
+
+## 构建
+
+1.首先肯定是使用maven或者gradle进行构建，生成jar
+
+2.然后是运行镜像构建命令：docker build -t app-java:v1 .
+
+3.上面就生成了应用镜像，后面可以推送到云上仓库，用于拉取并部署
+
+
+
+也可以结合Jenkins进行使用
