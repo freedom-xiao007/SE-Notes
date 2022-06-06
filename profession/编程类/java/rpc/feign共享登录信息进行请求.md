@@ -4,7 +4,7 @@
 
 
 
-持续创作，加速成长！这是我参与「掘金日新计划 · 6 月更文挑战」的第1天，[点击查看活动详情](https://juejin.cn/post/7099702781094674468?utm_source=xitongxiaoxi&utm_medium=push&utm_campaign=kechengfenxiao)
+持续创作，加速成长！这是我参与「掘金日新计划 · 6 月更文挑战」的第2天，[点击查看活动详情](https://juejin.cn/post/7099702781094674468?utm_source=xitongxiaoxi&utm_medium=push&utm_campaign=kechengfenxiao)
 
 
 
