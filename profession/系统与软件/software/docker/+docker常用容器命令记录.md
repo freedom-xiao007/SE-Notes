@@ -332,6 +332,7 @@ yum update -y
 ### 本地镜像仓库
 ```
 docker run -d -p 5000:5000 --name registry --restart=always -v D:/Docker/registry:/var/lib/registry registry:latest
+docker run -d -p 5000:5000 --name registry --restart=always -v /op/docker/registry:/var/lib/registry registry:latest
 
 # 在docker deamon 中加入 127.0.0.1:5000
 {
