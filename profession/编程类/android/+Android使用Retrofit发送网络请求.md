@@ -233,3 +233,10 @@ public class LoginFragment extends Fragment {
 本篇文章中介绍了如Android学习中如何使用Retrofit发起网络请求
 
 但由于吃初学，虽然感觉能用，但有点繁琐，不知道在实际的Android开发中，网络请求的最近实践是怎么样的，如果有的话，大佬可以在评论区告知下，感谢
+
+
+
+## 参考链接
+
+- [retrofit2 获取响应头信息](https://blog.csdn.net/a1064072510/article/details/83505643)
+- [[Android 使用retrofit时,怎样获取响应的头信息](https://www.cnblogs.com/zhujiabin/p/7451834.html)]（https://www.cnblogs.com/zhujiabin/p/7451834.html）
