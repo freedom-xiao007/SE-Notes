@@ -365,3 +365,9 @@ public class RecordServerTest extends BaseServerTest {
 ## 总结
 
 本文对于Feign共享登录信息进行一次尝试，使用的是定义拦截器加入token到请求头的方式
+
+
+
+## 参考链接
+
+- [Get headers feign netflix](https://stackoverflow.com/questions/38742191/get-headers-feign-netflix)
