@@ -10,7 +10,9 @@
 
 ## 源码准备
 
+mysql是一个开源项目，github地址如下，可以直接进行克隆
 
+- [mysql-server](https://github.com/mysql/mysql-server)
 
 
 
@@ -56,3 +58,4 @@ SdeiuNoNf7-c
 ## 参考链接
 
 - [第二站使用visual studio 对mysql进行源码级调试 - 博客园](https://www.cnblogs.com/huangxincheng/p/13084736.html)
+- [Initializing mysql directory error](https://stackoverflow.com/questions/37644118/initializing-mysql-directory-error)
