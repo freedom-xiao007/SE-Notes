@@ -11,7 +11,12 @@ curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://downlo
 
 curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:1.23.0.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.23:/1.23.0/CentOS_7/devel:kubic:libcontainers:stable:cri-o:1.23:1.23.0.repo
 
+curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo
+https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/1.23/CentOS_7/devel:kubic:libcontainers:stable:cri-o:1.23.repo
+
+yum erase -y cri-o
 yum install -y cri-o
+yum install -y cri-o-1.23.6
 systemctl daemon-reload
 systemctl enable crio --now
 
@@ -83,6 +88,12 @@ Ncat: Connection refused.
 ### kubelet kubeadm kubectl 安装
 
 ```sh
+yum erase kubelet kubeadm kubectl
+yum install -y kubelet-1.23.6 kubeadm-1.23.6 kubectl-1.23.6
+yum install -y kubelet-1.23.1 kubeadm-1.23.1 kubectl-1.23.1
+yum install -y kubelet-1.24.0 kubeadm-1.24.0 kubectl-1.24.0
+1.24.0
+
 默认情况下，Kubernetes 使用 容器运行时接口（Container Runtime Interface，CRI） 来与你所选择的容器运行时交互。
 
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
@@ -324,7 +335,9 @@ journalctl -xeu crio
 
 
 
-kubeadm init --apiserver-advertise-address=172.17.16.14 --pod-network-cidr=10.244.0.0/16 --image-repository='registry.cn-hangzhou.aliyuncs.com/google_containers'
+kubeadm init --apiserver-advertise-address=172.17.16.14 --service-cidr=10.1.0.0/16 --pod-network-cidr=192.168.0.0/16 --image-repository='registry.cn-hangzhou.aliyuncs.com/google_containers'
+kubeadm init --apiserver-advertise-address=xxx.xxx.xxx.xxx --service-cidr=10.1.0.0/16 --pod-network-cidr=192.168.0.0/16 --image-repository='registry.cn-hangzhou.aliyuncs.com/google_containers'
+kubeadm init --apiserver-advertise-address=172.17.16.14 --service-cidr=10.1.0.0/16 --pod-network-cidr=192.168.0.0/16 --config kubeadm-config.yaml
 ```
 
 
