@@ -305,10 +305,33 @@ kubectl get pods --namespace=calico-system -o wide
 
 
 
+## Dashboard安装访问
+
+在master节点机器上安装即可
+
 ```shell
+# 运行后即可
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
-kubectl get pods --namespace=kubernetes-dashboard -o wide
-kubectl describe pod dashboard-metrics-scraper-799d786dbf-bt9x7 --namespace=kubernetes-dashboard
+# 查看状态，等待状态完毕
+[root@crio-master k8s]# kubectl get pods --namespace=kubernetes-dashboard -o wide
+NAME                                         READY   STATUS    RESTARTS   AGE   IP              NODE              NOMINATED NODE   READINESS GATES
+dashboard-metrics-scraper-799d786dbf-prrgr   1/1     Running   0          12m   192.168.3.194   vm-20-11-centos   <none>           <none>
+kubernetes-dashboard-546cbc58cd-c5rs9        1/1     Running   0          12m   192.168.3.193   vm-20-11-centos   <none>           <none>
+
+# 查看详细信息
+kubectl describe pod dashboard-metrics-scraper-799d786dbf-prrgr --namespace=kubernetes-dashboard
+# 查看节点信息
+[root@crio-master ~]# kubectl --namespace=kubernetes-dashboard get service kubernetes-dashboard
+NAME                   TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes-dashboard   ClusterIP   10.1.45.51   <none>        443/TCP   5m24s
+
+# 编辑，将最后的type：ClusterIP改为type：NodePort
+kubectl --namespace=kubernetes-dashboard edit service kubernetes-dashboard
+# 再次运行命令查看，得到其映射到主机的端口32625，这样既可通过注解ip+端口访问
+[root@crio-master ~]# kubectl --namespace=kubernetes-dashboard get service kubernetes-dashboard
+NAME                   TYPE       CLUSTER-IP   EXTERNAL-IP   PORT(S)         AGE
+kubernetes-dashboard   NodePort   10.1.45.51   <none>        443:32652/TCP   7m31s
+
 ```
 
 
