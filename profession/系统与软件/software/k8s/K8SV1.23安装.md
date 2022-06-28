@@ -334,6 +334,8 @@ kubernetes-dashboard   NodePort   10.1.45.51   <none>        443:32652/TCP   7m3
 
 ```
 
+http://127.0.0.1:46462/api/v1/proxy/namespaces/default/services/kubernetes-dashboard:443/
+
 
 
 
