@@ -599,6 +599,9 @@ http {
 
 下面我们就直接使用第二个节点的 ip 进行访问即可，token 填入之前生成获取到的 token
 
+
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fe7283ab8fc546c9bf28e7585045f4eb~tplv-k3u1fbpfcp-watermark.image?)
+
 ## 参考链接
 
 - [docker ce install on centos](https://docs.docker.com/engine/install/centos/)
