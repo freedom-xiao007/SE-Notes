@@ -62,9 +62,9 @@ gpgkey=http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
 yum --enablerepo=nux-misc install tunctl
 
 # 新建虚拟网卡
-tunctl -t publick -u root
+tunctl -t public -u root
 # 配置网卡的IP，注意替换ip成自己机器对应的公网IP
-ifconfig publick 121.37.246.218 netmask 255.255.255.0 promisc
+ifconfig public 121.37.246.218 netmask 255.255.255.0 promisc
 ```
 
 注：**K8S 部署需要开通 6443 端口，在服务器的安全规则配置中，将 6443 端口开启**
@@ -614,3 +614,4 @@ http {
 - [Web 基础配置篇（十七）: Kubernetes dashboard 安装配置](https://cloud.tencent.com/developer/article/1634453)
 - [circtl 发行安装包](https://github.com/kubernetes-sigs/cri-tools/releases?q=v1.23.1&expanded=true)
 - [节点加入k8s集群如何获取token等参数值](https://blog.csdn.net/dazuiba008/article/details/94595451)
+- [多个公网服务器搭建k8s集群](https://blog.csdn.net/weixin_43988498/article/details/122639595)
