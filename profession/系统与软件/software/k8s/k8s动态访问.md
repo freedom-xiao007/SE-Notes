@@ -4,11 +4,19 @@
 
 
 ```sh
-➜ curl http://10.1.169.114:32143/app/versionCheck\?version\=1
+➜ curl http://10.1.167.223:9000/app/versionCheck\?version\=1
 {"data":{"downloadUrl":null,"updateMsg":null,"latest":true},"code":200,"msg":null}# 
+
+"interface=eth0"
 ```
 
+## cailco 模式重新配置
+```sh
+kubectl delete ippools --all
+./calicoctl apply -f ipip.yaml
 
+route add -net 192.168.3.197 netmask 255.255.255.0 gw 10.10.10.1
+```
 
 ## 问题记录
 ### 重新安装CNI插件后，node节点一直notready
@@ -39,6 +47,12 @@ systemctl daemon-reload
 systemctl restart containerd
 ```
 
+### Readiness probe failed: calico/node is not ready: BIRD is not ready: Error querying BIRD: unable to connect to BIRDv4 socket: dial unix /var/run/calico/bird.ctl: connect: connection refused
+
+- [kk添加node节点，calico组件启动不了](https://kubesphere.com.cn/forum/d/3129-kknodecalico)
+- [安装calico一个组件0/1 unable to connect to BIRDv4 socket: dial unix /var/run/bird/bird.ctl: connect: no su](https://blog.csdn.net/MrFDd/article/details/123358476)
+- [k8s安装calico的时候报：BIRD is not ready](https://blog.csdn.net/xing_S/article/details/123630179?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-123630179-blog-123358476.pc_relevant_aa2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-123630179-blog-123358476.pc_relevant_aa2&utm_relevant_index=2)
+
 ## 参考链接
 
 - [使用 Service 暴露你的应用](https://kubernetes.io/zh-cn/docs/tutorials/kubernetes-basics/expose/expose-intro/)
@@ -46,3 +60,6 @@ systemctl restart containerd
 - [Kubernetes对象之Service](https://www.cnblogs.com/tylerzhou/p/10989881.html)
 - [linux ip 转发设置 ip_forward、ip_forward与路由转发](https://blog.csdn.net/li_101357/article/details/78416813)
 - [calico Overlay networking](https://projectcalico.docs.tigera.io/networking/vxlan-ipip#configure-vxlan-encapsulation-for-all-inter-workload-traffic)
+- [k8s中正确删除一个pod](https://www.cnblogs.com/effortsing/p/10496547.html)
+- [强制删除POD](https://www.jianshu.com/p/fe7473e43d76)
+- [tcpdump详解和定位解决问题实例分析](https://blog.csdn.net/wj31932/article/details/106570542)
