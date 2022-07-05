@@ -342,6 +342,10 @@ cp: overwrite ‘/root/.kube/config’? y
 kubectl create -f https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
 kubectl create -f https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml
 
+# 如果要卸载
+kubectl delete -f https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
+kubectl delete -f https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml
+
 # 查看部署状态
 watch kubectl get pods -n calico-system
 ```
