@@ -183,6 +183,9 @@ kubectl create secret docker-registry --namespace=xiuxian xiuxian.docker.registe
 ```sh
 kubectl get secret --namespace=xiuxian xiuxian.docker.register --output="jsonpath={.data.\.dockerconfigjson}" | base64 --decode
 kubectl get secret --namespace=xiuxian xiuxian.docker.register -o yaml
+
+# 删除秘钥
+kubectl delete secret --namespace=xiuxian xiuxian.docker.register 
 ```
 
 #### 应用部署
