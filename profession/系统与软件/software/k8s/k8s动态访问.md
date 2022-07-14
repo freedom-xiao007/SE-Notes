@@ -69,6 +69,32 @@ Service解决了Pod重启后的IP变化问题，但还有一个问题是跨主�
 
 首先是参考链接配置eth0:1网卡
 
+```sh
+# step1 ，注意替换你的公网IP进去
+cat > /etc/sysconfig/network-scripts/ifcfg-eth0:1 <<EOF
+BOOTPROTO=static
+DEVICE=eth0:1
+IPADDR=你的公网IP
+PREFIX=32
+TYPE=Ethernet
+USERCTL=no
+ONBOOT=yes
+EOF
+# step2 如果是centos8，需要重启
+systemctl restart network
+# step3 查看新建的IP是否进去
+ip addr
+
+# 此文件安装kubeadm后就存在了
+vim /usr/lib/systemd/system/kubelet.service.d/10-kubeadm.conf
+
+# 注意，这步很重要，如果不做，节点仍然会使用内网IP注册进集群
+# 在末尾添加参数 --node-ip=公网IP
+ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS $KUBELET_CONFIG_ARGS $KUBELET_KUBEADM_ARGS $KUBELET_EXTRA_ARGS --node-ip=xx.xx.xx.xx
+```
+
+
+
 其他的也不复杂，我们先将之前部署的k8s卸载，然后初始化k8s集群即可
 
 
@@ -439,6 +465,22 @@ tar axvf ./cni-plugins-linux-arm64-v1.0.1.tgz  -C /opt/cni/bin/
 
 systemctl restart kublet
 ```
+
+
+
+### failed to set bridge addr: \"cni0\" already has an IP address different from 10.244.3.1/24"
+
+应该是之前的安装信息没有清理干净，运行下面的命令：
+
+```sh
+yum install -y bridge-utils
+ip link set cni0 down && brctl delbr cni0  
+
+# 查看列表cni0不在即可
+ip a
+```
+
+
 
 
 
