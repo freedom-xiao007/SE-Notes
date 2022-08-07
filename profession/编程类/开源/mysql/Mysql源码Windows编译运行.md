@@ -114,6 +114,12 @@ cmake ..  -DDOWNLOAD_BOOST=1 -DWITH_BOOST="D:\Code\c++\self\mysql-server\boost\b
 
 
 
+## 其他
+
+如果忘记了初始化密码，可以重新配置参数后再重新生成
+
+需要删除对应的data目录：D:\Code\c++\self\mysql-server\release\sql\data
+
 
 
 ## 总结
