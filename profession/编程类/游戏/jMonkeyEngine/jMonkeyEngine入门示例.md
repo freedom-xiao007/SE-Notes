@@ -10,6 +10,9 @@
 - [jMonkeyEngine 3 教程 (1) - SimpleApplication](http://www.jmecn.net/wiki/beginner/hello_simpleapplication.html)
 - [jMonkeyEngine/jmonkeyengine](https://github.com/jMonkeyEngine/jmonkeyengine)
 
+## 资源链接
+- [novelai](https://novelai.net/)
+
 ## 参考链接
 - [jMonkeyEngine](https://github.com/orgs/jMonkeyEngine/repositories)
 - [Simple-jME-Android](https://github.com/iwgeric/Simple-jME-Android)
