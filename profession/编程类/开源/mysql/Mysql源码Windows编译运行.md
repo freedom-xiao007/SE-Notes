@@ -68,7 +68,7 @@ cmake ..  -DDOWNLOAD_BOOST=1 -DWITH_BOOST="D:\Code\c++\self\mysql-server\boost\b
 
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d793050541114dfb9d5b7249e757325e~tplv-k3u1fbpfcp-zoom-1.image)
 
-
+如果出现错误：OpenSSL版本为1.0.0时（或者提示其他的版本信息），需要先删除掉本地电脑的OpenSSL版本，然后去下载1.1.1版本的，[下载地址](http://slproweb.com/products/Win32OpenSSL.html),下载后面的Win64 OpenSSL v1.1.1s，前面的依旧有些问题
 
 ## 运行
 
