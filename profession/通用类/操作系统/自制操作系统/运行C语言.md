@@ -176,6 +176,8 @@ D:\\software\\Bochs-2.7\\bochs -q -f D:\\software\\Bochs-2.7\\dlxlinux\\bochsrc_
 
 bochs的安装和使用说明参考后面的，运行结果如下：
 
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fdc99a612e2c441bac767e7797b168b1~tplv-k3u1fbpfcp-watermark.image?)
+
 ## bochs安装使用说明
 首先bochs的下载地址为：https://sourceforge.net/projects/bochs/
 
